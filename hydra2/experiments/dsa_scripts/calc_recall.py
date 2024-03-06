@@ -504,7 +504,7 @@ all_results={}
 for fileName in os.listdir():
     if not ('build' in fileName):
         testId=fileName.split('.txt')[0]
-        print(testId)
+        # print(testId)
         dataset=getDataset(testId)
         xb,xq,gt=dataset()
         q=xq.shape[0]
@@ -522,30 +522,34 @@ for fileName in os.listdir():
             distance = np.dot(minus.T, minus)
             max_dists.append(math.sqrt(distance))
         # print(max_dists)
-        print(testId, q, len(max_dists))
+        # print(testId, q, len(max_dists))
         total_count=0
         total_search_time=0.0
         total_indexing_time=0.0
         total_nb=0
+        unique_nodes=set()
         with open(fileName, 'r') as file:
             Lines = file.readlines()
             for ln in Lines:
                 if 'Query_exact_distance' in ln:
-                    total_nb = total_nb + 1
                     ln=ln.replace('\n','')
                     ln=ln.split('\t')
                     
                     nq=int(ln[3])-1
                     _k=int(ln[4])-1
                     _dist=float(ln[1])
-                    # print(nq,_k,_dist)
-                    if (_dist<=max_dists[nq]):
+                    unique_nodes.add((nq,_k))
+                    if (_k<k and _k>=0 and nq<q and nq>=0):
+                        total_nb = total_nb + 1
+                        
+                    if (_dist<=max_dists[nq] and _k<k and _k>=0 and nq<q and nq>=0):
                         total_count=total_count+1
                 if 'Query_total_time_secs' in ln:
                     ln=ln.replace('\n','')
                     ln=ln.split('\t')
                     total_search_time = total_search_time + float(ln[1])
-
+        # if testId=='sald1m1':
+        #     print('Sald issue deb', sorted(unique_nodes))
         dct=None
         if not (testId in all_results):
             all_results[testId]={}
@@ -555,6 +559,7 @@ for fileName in os.listdir():
         dct['Search Time']=total_search_time
         dct['Given n*k']=q*k
         dct['Found n*k']=total_nb
+        dct['unique neighbors']=len(unique_nodes)
         dct['issue']=(total_nb!=q*k)
 for fileName in os.listdir():
     if ('build' in fileName):
