@@ -12,7 +12,7 @@ BASE=/data/kabir/similarity-search/dataset/${DATASET}/base.bin
 QUERY=/data/kabir/similarity-search/dataset/${DATASET}/query.bin
 INDEX_FILE=/data/kabir/similarity-search/dsaIndex/${INDEX}/
 logFile=dsa_scripts/logs/${INDEX}.txt
-outputFile=dsa_scripts/logs/build${INDEX}.txtoutputFile=dsa_scripts/logs/build${INDEX}.txt
+outputFile=dsa_scripts/logs/build${INDEX}.txt
 
 BUFFER_SIZE=9531
 LEAF_SIZE=300
