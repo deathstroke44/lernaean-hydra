@@ -3,8 +3,8 @@ import numpy as np
 import math
 import math 
 
-dataset_path = '/home/saminyeaser/OSU study/Research-Implementation/dataset/'
-# dataset_path = '/data/kabir/similarity-search/dataset/'
+# dataset_path = '/home/saminyeaser/OSU study/Research-Implementation/dataset/'
+dataset_path = '/data/kabir/similarity-search/dataset/'
 
 def read_vecs(filePath):
     return ps.read_vecs(dataset_path + filePath)
