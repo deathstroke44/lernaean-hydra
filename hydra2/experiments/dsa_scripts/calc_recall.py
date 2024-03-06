@@ -478,7 +478,7 @@ def getDataset(testId):
     if testId.startswith('seismic1m'):
         return get_data_seismic1m
     if testId.startswith('sift'):
-        return get_data_sift
+        return get_data_sift1M
     if testId.startswith('space1V'):
         return get_data_space1V
     if testId.startswith('sun'):
@@ -504,6 +504,7 @@ all_results={}
 for fileName in os.listdir():
     if not ('build' in fileName):
         testId=fileName.split('.txt')[0]
+        print(testId)
         dataset=getDataset(testId)
         xb,xq,gt=dataset()
         q=xq.shape[0]
@@ -513,6 +514,7 @@ for fileName in os.listdir():
 
         results=np.zeros((q,k))
         max_dists=[]
+        
         for nq in range(0,q):
             nk=k-1
             k_closest=gt[nq][nk]
@@ -520,7 +522,7 @@ for fileName in os.listdir():
             distance = np.dot(minus.T, minus)
             max_dists.append(math.sqrt(distance))
         # print(max_dists)
-
+        print(testId, q, len(max_dists))
         total_count=0
         total_search_time=0.0
         total_indexing_time=0.0
@@ -553,6 +555,7 @@ for fileName in os.listdir():
         dct['Search Time']=total_search_time
         dct['Given n*k']=q*k
         dct['Found n*k']=total_nb
+        dct['issue']=(total_nb!=q*k)
 for fileName in os.listdir():
     if ('build' in fileName):
         testId=fileName.split('.txt')[0].split('build')[1]
