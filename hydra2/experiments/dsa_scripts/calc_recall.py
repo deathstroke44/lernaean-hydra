@@ -412,8 +412,8 @@ def get_compressed_loader(relative_path, _dim, data_loader = None):
 # imageNet (2340373, 150) (200, 150) (200, 20)
 # lastfm (292385, 65) (100, 65) (100, 100)
 # millionSong (992272, 420) (200, 420) (200, 20)
-# movielens (10677, 150) (1000, 150) (1000, 100)
 # MNIST (69000, 784) (200, 784) (200, 20)
+# movielens (10677, 150) (1000, 150) (1000, 100)
 # netflix (17770, 300) (1000, 300) (1000, 100)
 # notre (332668, 128) (200, 128) (200, 20)
 # nuswide (268643, 500) (200, 500) (200, 20)
@@ -427,8 +427,8 @@ def get_compressed_loader(relative_path, _dim, data_loader = None):
 # text-to-image (1000000, 200) (100, 200) (100, 100)
 # tiny5m (5000000, 384) (1000, 384) (1000, 100)
 # trevi (99900, 4096) (200, 4096) (200, 20)
-# uqv (1000000, 256) (10000, 256) (10000, 100)
 # ukbench (1097907, 128) (200, 128) (200, 20)
+# uqv (1000000, 256) (10000, 256) (10000, 100)
 # word2vec (1000000, 300) (1000, 300) (1000, 100)
 # yahoomusic (136736, 300) (100, 300) (100, 100)
 
@@ -455,6 +455,48 @@ def getDataset(testId):
         return get_data_imageNet
     if testId.startswith('siftsmall'):
         return get_data_sift
+    if testId.startswith('lastfm'):
+        return get_data_lastfm
+    if testId.startswith('millionSong'):
+        return get_data_millionSong
+    if testId.startswith('movielens'):
+        return get_data_movielens
+    if testId.startswith('MNIST'):
+        return get_data_MNIST
+    if testId.startswith('netflix'):
+        return get_data_netflix
+    if testId.startswith('notre'):
+        return get_data_notre
+    if testId.startswith('nuswide'):
+        return get_data_nuswide
+    if testId.startswith('nytimes'):
+        return get_data_nytimes
+    if testId.startswith('random'):
+        return get_data_random
+    if testId.startswith('sald1m'):
+        return get_data_sald1m
+    if testId.startswith('seismic1m'):
+        return get_data_seismic1m
+    if testId.startswith('sift'):
+        return get_data_sift
+    if testId.startswith('space1V'):
+        return get_data_space1V
+    if testId.startswith('sun'):
+        return get_data_sun
+    if testId.startswith('text-to-image'):
+        return get_data_text_to_image
+    if testId.startswith('tiny5m'):
+        return get_data_tiny5m
+    if testId.startswith('trevi'):
+        return get_data_trevi
+    if testId.startswith('uqv'):
+        return get_data_uqv
+    if testId.startswith('ukbench'):
+        return get_data_ukbench
+    if testId.startswith('word2vec'):
+        return get_data_word2vec
+    if testId.startswith('yahoomusic'):
+        return get_data_yahoomusic
     
 os.chdir('logs')
 
