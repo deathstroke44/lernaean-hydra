@@ -10,7 +10,7 @@ K=20
 INDEX=${DATASET}${ID}
 BASE=/data/kabir/similarity-search/dataset/${DATASET}/base.bin
 QUERY=/data/kabir/similarity-search/dataset/${DATASET}/query.bin
-INDEX_FILE=/data/kabir/similarity-search/dsaIndex/${INDEX}
+INDEX_FILE=/data/kabir/similarity-search/dsaIndex/${INDEX}/
 logFile=logs/logs/${INDEX}.txt
 
 BUFFER_SIZE=9531

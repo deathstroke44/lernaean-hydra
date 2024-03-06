@@ -471,6 +471,7 @@ with open(fileName, 'r') as file:
             ln=ln.replace('\n','')
             ln=ln.split('\t')
             total_search_time = total_search_time + float(ln[1])
+print('Total Match:', total_count)
 print('Recall:',total_count/(q*k))
 print('Search Time:',total_search_time)
 print('Given n*k:',q*k)
