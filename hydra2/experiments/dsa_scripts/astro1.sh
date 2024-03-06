@@ -17,8 +17,7 @@ BUFFER_SIZE=9531
 LEAF_SIZE=300
 NPROBES=100
 
-# echo $INDEX $BASE $QUERY $INDEX_FILE $logFile $BUFFER_SIZE $LEAF_SIZE $NPROBES
-
+cd ..
 
 bin/dstree --dataset $BASE --dataset-size $DATASET_SIZE --buffer-size $BUFFER_SIZE --leaf-size $LEAF_SIZE --index-path $INDEX_FILE --ascii-input 0 --mode 0 --timeseries-size $DIMENSION
 
