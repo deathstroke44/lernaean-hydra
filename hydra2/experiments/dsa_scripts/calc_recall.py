@@ -2,6 +2,7 @@ import pysvs as ps
 import numpy as np
 import math
 import math 
+import os
 
 # dataset_path = '/home/saminyeaser/OSU study/Research-Implementation/dataset/'
 dataset_path = '/data/kabir/similarity-search/dataset/'
@@ -431,50 +432,106 @@ def get_compressed_loader(relative_path, _dim, data_loader = None):
 # word2vec (1000000, 300) (1000, 300) (1000, 100)
 # yahoomusic (136736, 300) (100, 300) (100, 100)
 
-fileName='logs/siftsmall1.txt'
-dataset=get_data_sift
-xb,xq,gt=dataset()
-q=xq.shape[0]
-d=xq.shape[1]
-k=gt.shape[1]
-assert(xq.shape[0]==gt.shape[0])
+def getDataset(testId):
+    if testId.startswith('astro1m'):
+        return get_data_astro1m
+    if testId.startswith('audio'):
+        return get_data_audio
+    if testId.startswith('bigann'):
+        return get_data_bigann
+    if testId.startswith('cifar'):
+        return get_data_cifar
+    if testId.startswith('crawl'):
+        return get_data_crawl
+    if testId.startswith('deep'):
+        return get_data_deep1M
+    if testId.startswith('enron'):
+        return get_data_enron
+    if testId.startswith('gist'):
+        return get_data_gist
+    if testId.startswith('glove'):
+        return get_data_glove
+    if testId.startswith('imageNet'):
+        return get_data_imageNet
+    if testId.startswith('siftsmall'):
+        return get_data_sift
+    
+os.chdir('logs')
 
-results=np.zeros((q,k))
-max_dists=[]
-for nq in range(0,q):
-    nk=k-1
-    k_closest=gt[nq][nk]
-    minus = xb[k_closest] - xq[nq]
-    distance = np.dot(minus.T, minus)
-    max_dists.append(math.sqrt(distance))
-# print(max_dists)
+all_results={}
+for fileName in os.listdir():
+    if not ('build' in fileName):
+        testId=fileName.split('.txt')[0]
+        dataset=getDataset(testId)
+        xb,xq,gt=dataset()
+        q=xq.shape[0]
+        d=xq.shape[1]
+        k=gt.shape[1]
+        assert(xq.shape[0]==gt.shape[0])
 
-total_count=0
-total_search_time=0.0
-total_nb=0
+        results=np.zeros((q,k))
+        max_dists=[]
+        for nq in range(0,q):
+            nk=k-1
+            k_closest=gt[nq][nk]
+            minus = xb[k_closest] - xq[nq]
+            distance = np.dot(minus.T, minus)
+            max_dists.append(math.sqrt(distance))
+        # print(max_dists)
 
-with open(fileName, 'r') as file:
-    Lines = file.readlines()
-    for ln in Lines:
-        if 'Query_exact_distance' in ln:
-            total_nb = total_nb + 1
-            ln=ln.replace('\n','')
-            ln=ln.split('\t')
-            
-            nq=int(ln[3])-1
-            _k=int(ln[4])-1
-            _dist=float(ln[1])
-            # print(nq,_k,_dist)
-            if (_dist<=max_dists[nq]):
-                total_count=total_count+1
-        if 'Query_total_time_secs' in ln:
-            ln=ln.replace('\n','')
-            ln=ln.split('\t')
-            total_search_time = total_search_time + float(ln[1])
-print('Total Match:', total_count)
-print('Recall:',total_count/(q*k))
-print('Search Time:',total_search_time)
-print('Given n*k:',q*k)
-print('Found n*k:',total_nb)
+        total_count=0
+        total_search_time=0.0
+        total_indexing_time=0.0
+        total_nb=0
+        with open(fileName, 'r') as file:
+            Lines = file.readlines()
+            for ln in Lines:
+                if 'Query_exact_distance' in ln:
+                    total_nb = total_nb + 1
+                    ln=ln.replace('\n','')
+                    ln=ln.split('\t')
+                    
+                    nq=int(ln[3])-1
+                    _k=int(ln[4])-1
+                    _dist=float(ln[1])
+                    # print(nq,_k,_dist)
+                    if (_dist<=max_dists[nq]):
+                        total_count=total_count+1
+                if 'Query_total_time_secs' in ln:
+                    ln=ln.replace('\n','')
+                    ln=ln.split('\t')
+                    total_search_time = total_search_time + float(ln[1])
 
+        dct=None
+        if not (testId in all_results):
+            all_results[testId]={}
+        dct=all_results[testId]
+        dct['Total Match']=total_count
+        dct['Recall']=total_count/(q*k)
+        dct['Search Time']=total_search_time
+        dct['Given n*k']=q*k
+        dct['Found n*k']=total_nb
+for fileName in os.listdir():
+    if ('build' in fileName):
+        testId=fileName.split('.txt')[0].split('build')[1]
+        with open(fileName, 'r') as file:
+            Lines = file.readlines()
+            for ln in Lines:
+                if 'Index_building_total_time_secs' in ln:
+                    ln=ln.replace('\n','')
+                    ln=ln.split('\t')
+                    total_indexing_time = float(ln[1])
+                    dct=None
+                    if not (testId in all_results):
+                        all_results[testId]={}
+                    dct=all_results[testId]
+                    dct['Total Indexing Count']=total_indexing_time
                 
+        
+        
+# print(all_results)
+org_results=[]
+for key in all_results.keys():
+    org_results.append((key, all_results[key]))
+for r in sorted(org_results):
+    print(r)
