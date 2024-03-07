@@ -19,6 +19,8 @@ LEAF_SIZE=300
 NPROBES=100
 
 cd ..
+rm -rf $INDEX_FILE
+rm -rf $INDEX_FILE
 
 
 bin/dstree --dataset $BASE --dataset-size $DATASET_SIZE --buffer-size $BUFFER_SIZE --leaf-size $LEAF_SIZE --index-path $INDEX_FILE --ascii-input 0 --mode 0 --timeseries-size $DIMENSION > $outputFile

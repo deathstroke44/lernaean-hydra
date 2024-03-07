@@ -109,12 +109,15 @@ enum response dstree_query_binary_file(const char *ifilename, int q_num, struct 
     fseek(ifile, 0L, SEEK_SET);
     COUNT_PARTIAL_INPUT_TIME_END        
     unsigned int ts_length = index->settings->timeseries_size;
-    file_position_type total_records = sz/ts_length * sizeof(ts_type);
+    file_position_type total_records = sz/(ts_length * sizeof(ts_type));
     unsigned int offset = 0;
 
     if (total_records < q_num) {
         fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
         exit(-1);
+    }
+    else {
+        fprintf(stderr, "Test File %s has %llu records!\n", ifilename, total_records);
     }
 
     unsigned int q_loaded = 0;
@@ -222,13 +225,17 @@ enum response dstree_knn_query_binary_file(const char *ifilename,
     fseek(ifile, 0L, SEEK_SET);
     COUNT_PARTIAL_INPUT_TIME_END        
     unsigned int ts_length = index->settings->timeseries_size;
-    file_position_type total_records = sz/ts_length * sizeof(ts_type);
+    file_position_type total_records = sz/(ts_length * sizeof(ts_type));
     unsigned int offset = 0;
 
     if (total_records < q_num) {
         fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
         exit(-1);
     }
+    else {
+        fprintf(stderr, "Test File %s has %llu records!\n", ifilename, total_records);
+    }
+    
 
     unsigned int q_loaded = 0;
     ts_type * query_ts = calloc(1,sizeof(ts_type) * ts_length);
@@ -347,12 +354,15 @@ enum response dstree_tlb_binary_file(const char *ifilename, int q_num, struct ds
     file_position_type sz = (file_position_type) ftell(ifile);
     fseek(ifile, 0L, SEEK_SET);
     unsigned int ts_length = index->settings->timeseries_size;
-    file_position_type total_records = sz/ts_length * sizeof(ts_type);
+    file_position_type total_records = sz/(ts_length * sizeof(ts_type));
     unsigned int offset = 0;
 
     if (total_records < q_num) {
         fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
         exit(-1);
+    }
+    else {
+        fprintf(stderr, "Test File %s has %llu records!\n", ifilename, total_records);
     }
 
     unsigned int q_loaded = 0;
@@ -495,14 +505,14 @@ enum response dstree_index_binary_file(const char *ifilename, file_position_type
     fseek(ifile, 0L, SEEK_END);
     file_position_type sz = (file_position_type) ftell(ifile);
     COUNT_PARTIAL_INPUT_TIME_END    
-    file_position_type total_records = sz/index->settings->timeseries_size * sizeof(ts_type);
+    file_position_type total_records = sz/(index->settings->timeseries_size * sizeof(ts_type));
 
     COUNT_PARTIAL_RAND_INPUT
     COUNT_PARTIAL_INPUT_TIME_START
     fseek(ifile, 0L, SEEK_SET);
     COUNT_PARTIAL_INPUT_TIME_END        
     if (total_records < ts_num) {
-        fprintf(stderr, "Test: File %s has only %llu records!\n", ifilename, total_records);
+        fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
         return FAILURE;
     }
     else {
