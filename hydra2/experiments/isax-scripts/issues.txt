@@ -1,0 +1,14 @@
+[9]   Done                    bash astro1.sh
+[10]   Done                    bash cifar1.sh
+[11]   Done                    bash enron1.sh
+[12]   Exit 139                bash imageNet1.sh
+[13]   Done                    bash millionsong1.sh
+[14]   Done                    bash netflix1.sh
+[15]   Done                    bash nytimes1.sh
+[9]   Exit 139                bash seismic1.sh
+[10]   Exit 139                bash space1.sh
+[12]   Exit 139                bash uqv1.sh
+[13]   Exit 139                bash bigann1.sh
+[15]   Done                    bash gist1.sh
+[16]   Exit 139                bash lastfm1.sh
+[11]   Done                    bash tiny1.sh

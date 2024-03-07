@@ -305,7 +305,7 @@ void isax_index_binary_file(const char *ifilename, file_position_type ts_num, is
     COUNT_PARTIAL_INPUT_TIME_END          
     
     if (total_records < ts_num) {
-        fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
+        fprintf(stderr, "Test: File %s has only %llu records!\n", ifilename, total_records);
         exit(-1);
     }
     

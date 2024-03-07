@@ -502,8 +502,11 @@ enum response dstree_index_binary_file(const char *ifilename, file_position_type
     fseek(ifile, 0L, SEEK_SET);
     COUNT_PARTIAL_INPUT_TIME_END        
     if (total_records < ts_num) {
-        fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
+        fprintf(stderr, "Test: File %s has only %llu records!\n", ifilename, total_records);
         return FAILURE;
+    }
+    else {
+        fprintf(stderr, "Test: File %s has %llu records!\n", ifilename, total_records);
     }
     	
     file_position_type ts_loaded = 0;    
