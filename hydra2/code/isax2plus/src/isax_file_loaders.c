@@ -110,6 +110,7 @@ void isax_knn_query_binary_file(const char *ifilename,
         fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
         exit(-1);
     }
+    fprintf(stderr, "File %s has %llu records %llu!\n", ifilename, total_records, sz);
 
     int q_loaded = 0;
     //ts_type * ts = malloc(sizeof(ts_type) * index->settings->timeseries_size);
@@ -234,6 +235,7 @@ void isax_query_binary_file(const char *ifilename, int q_num, isax_index *index,
         fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
         exit(-1);
     }
+    fprintf(stderr, "File %s has %llu records %llu!\n", ifilename, total_records, sz);
 
     int q_loaded = 0;
     //ts_type * ts = malloc(sizeof(ts_type) * index->settings->timeseries_size);
@@ -316,6 +318,7 @@ void isax_tlb_binary_file(const char *ifilename, int q_num, isax_index *index) {
         fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
         exit(-1);
     }
+    fprintf(stderr, "File %s has %llu records %llu!\n", ifilename, total_records, sz);
 
     int q_loaded = 0;
     ts_type * query_ts = calloc(1,sizeof(ts_type) * ts_length);
@@ -455,6 +458,7 @@ void isax_index_binary_file(const char *ifilename, file_position_type ts_num, is
         fprintf(stderr, "File %s has only %llu records!\n", ifilename, total_records);
         exit(-1);
     }
+    fprintf(stderr, "File %s has %llu records %llu!\n", ifilename, total_records, sz);
     
 	
     file_position_type ts_loaded = 0;    
