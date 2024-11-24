@@ -27,7 +27,7 @@ for i in range(0,len(batches)):
     sys.stdout = open("run_bulk_" + str(i)+'.sh', "a")
     for script in batches[i]:
         # cpu=cpu+1
-        print(script, end=' && ')
+        print(script, end=' ; ')
     print('echo 1')
 
 
