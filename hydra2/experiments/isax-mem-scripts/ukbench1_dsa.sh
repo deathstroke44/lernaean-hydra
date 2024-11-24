@@ -12,8 +12,8 @@ INDEX=${DATASET}${ID}
 BASE=/data/kabir/similarity-search/dataset/${DATASET}/base.bin
 QUERY=/data/kabir/similarity-search/dataset/${DATASET}/query.bin
 INDEX_FILE=/data/kabir/similarity-search/dsaIndex/${INDEX}/
-logFile=dsa_scripts/logs/memory-log-${INDEX}.txt
-outputFile=dsa_scripts/logs/memory-log-build${INDEX}.txt
+logFile=memory-logs/dsa-memory-log-${INDEX}.txt
+outputFile=memory-logs/dsa-memory-log-build-${INDEX}.txt
 
 BUFFER_SIZE=9531
 LEAF_SIZE=300

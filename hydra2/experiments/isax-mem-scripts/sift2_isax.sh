@@ -11,8 +11,8 @@ INDEX=${DATASET}${ID}
 BASE=/data/kabir/similarity-search/dataset/${DATASET}/base.bin
 QUERY=/data/kabir/similarity-search/dataset/${DATASET}/query.bin
 INDEX_FILE=/data/kabir/similarity-search/isaxIndex/${INDEX}/
-logFile=isax-scripts/logs/memory-log-${INDEX}.txt
-outputFile=isax-scripts/logs/memory-log-build${INDEX}.txt
+logFile=memory-logs/isax-memory-log-${INDEX}.txt
+outputFile=memory-logs/isax-memory-log-build-${INDEX}.txt
 
 BUFFER_SIZE=9531
 LEAF_SIZE=20000
