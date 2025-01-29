@@ -41,7 +41,7 @@ outputFile=dsa_scripts/logs/build${INDEX}.txt
 
 
 
-cd ..
+
 rm -rf $INDEX_FILE
 
 bin/dstree --dataset $BASE --dataset-size $DATASET_SIZE --buffer-size $BUFFER_SIZE --leaf-size $LEAF_SIZE --index-path $INDEX_FILE --ascii-input 0 --mode 0 --timeseries-size $DIMENSION > $outputFile > $outputFile
@@ -63,7 +63,7 @@ outputFile=dsa_scripts/logs/build${INDEX}.txt
 
 
 
-cd ..
+
 rm -rf $INDEX_FILE
 
 bin/dstree --dataset $BASE --dataset-size $DATASET_SIZE --buffer-size $BUFFER_SIZE --leaf-size $LEAF_SIZE --index-path $INDEX_FILE --ascii-input 0 --mode 0 --timeseries-size $DIMENSION > $outputFile > $outputFile
@@ -84,7 +84,7 @@ outputFile=dsa_scripts/logs/build${INDEX}.txt
 
 
 
-cd ..
+
 rm -rf $INDEX_FILE
 
 bin/dstree --dataset $BASE --dataset-size $DATASET_SIZE --buffer-size $BUFFER_SIZE --leaf-size $LEAF_SIZE --index-path $INDEX_FILE --ascii-input 0 --mode 0 --timeseries-size $DIMENSION > $outputFile > $outputFile
@@ -105,7 +105,7 @@ outputFile=dsa_scripts/logs/build${INDEX}.txt
 
 
 
-cd ..
+
 rm -rf $INDEX_FILE
 
 bin/dstree --dataset $BASE --dataset-size $DATASET_SIZE --buffer-size $BUFFER_SIZE --leaf-size $LEAF_SIZE --index-path $INDEX_FILE --ascii-input 0 --mode 0 --timeseries-size $DIMENSION > $outputFile > $outputFile
@@ -126,7 +126,7 @@ outputFile=dsa_scripts/logs/build${INDEX}.txt
 
 
 
-cd ..
+
 rm -rf $INDEX_FILE
 
 bin/dstree --dataset $BASE --dataset-size $DATASET_SIZE --buffer-size $BUFFER_SIZE --leaf-size $LEAF_SIZE --index-path $INDEX_FILE --ascii-input 0 --mode 0 --timeseries-size $DIMENSION > $outputFile > $outputFile
@@ -148,7 +148,7 @@ outputFile=dsa_scripts/logs/build${INDEX}.txt
 
 
 
-cd ..
+
 rm -rf $INDEX_FILE
 
 bin/dstree --dataset $BASE --dataset-size $DATASET_SIZE --buffer-size $BUFFER_SIZE --leaf-size $LEAF_SIZE --index-path $INDEX_FILE --ascii-input 0 --mode 0 --timeseries-size $DIMENSION > $outputFile > $outputFile
