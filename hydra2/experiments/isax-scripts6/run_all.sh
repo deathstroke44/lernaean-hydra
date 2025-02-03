@@ -1,0 +1,1 @@
+taskset --cpu-list 21-21 bash ethz.sh & taskset --cpu-list 22-22 bash vcseis.sh & taskset --cpu-list 23-23 bash txed.sh & taskset --cpu-list 24-24 bash lendb.sh & taskset --cpu-list 25-25 bash stead.sh & taskset --cpu-list 26-26 bash geofon.sh & taskset --cpu-list 27-27 bash instancegm.sh & taskset --cpu-list 28-28 bash Music.sh & taskset --cpu-list 29-29 bash Yelp.sh & echo 1
