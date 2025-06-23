@@ -1,0 +1,1 @@
+taskset --cpu-list 31-31 bash OBS.sh & taskset --cpu-list 32-32 bash PNW.sh & taskset --cpu-list 33-33 bash OBST2024.sh & taskset --cpu-list 34-34 bash NEIC.sh & taskset --cpu-list 35-35 bash Meier2019JGR.sh & taskset --cpu-list 36-36 bash ISC_EHB_DepthPhases.sh & taskset --cpu-list 37-37 bash Iquique.sh & echo 1
